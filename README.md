@@ -15,7 +15,6 @@
 
 创建bpmn实例
 ```javascript
-import controlDict from './controlDict'
 
 var bpmnModeler = new BpmnJS({
 	container: '#canvas',
@@ -32,6 +31,8 @@ var bpmnModeler = new BpmnJS({
 
 importXML的第二个参数可选"XML", "JSON"
 ```javascript
+import controlDict from './controlDict'
+
 bpmnModeler.importXML(bpmnXML, {type: 'JSON', dict: controlDict}, function(err) {
 	if (err) {
 		return console.error('could not import BPMN 2.0 diagram', err);
@@ -44,6 +45,8 @@ bpmnModeler.importXML(bpmnXML, {type: 'JSON', dict: controlDict}, function(err) 
 
 saveXML的第二个参数可选"XML", "JSON"
 ```javascript
+import controlDict from './controlDict'
+
 bpmnModeler.saveXML({ format: true }, {type: 'JSON', dict: controlDict}, function(err, xml) {
 	if (err) {
 		return console.error('could not import BPMN 2.0 diagram', err);
