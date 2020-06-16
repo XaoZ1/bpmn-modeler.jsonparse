@@ -15,6 +15,8 @@
 
 创建bpmn实例
 ```javascript
+import controlDict from './controlDict'
+
 var bpmnModeler = new BpmnJS({
 	container: '#canvas',
 	keyboard: {
@@ -23,9 +25,14 @@ var bpmnModeler = new BpmnJS({
 });
 ```
 
+| 参数 | value |
+| --- | --- |
+|type|'JSON'/'XML'|
+|dict|Object|
+
 importXML的第二个参数可选"XML", "JSON"
 ```javascript
-bpmnModeler.importXML(bpmnXML, 'XML', function(err) {
+bpmnModeler.importXML(bpmnXML, {type: 'JSON', dict: controlDict}, function(err) {
 	if (err) {
 		return console.error('could not import BPMN 2.0 diagram', err);
 	}
@@ -37,7 +44,7 @@ bpmnModeler.importXML(bpmnXML, 'XML', function(err) {
 
 saveXML的第二个参数可选"XML", "JSON"
 ```javascript
-bpmnModeler.saveXML({ format: true }, 'XML', function(err, xml) {
+bpmnModeler.saveXML({ format: true }, {type: 'JSON', dict: controlDict}, function(err, xml) {
 	if (err) {
 		return console.error('could not import BPMN 2.0 diagram', err);
 	}
@@ -140,6 +147,18 @@ json示例
 }
 
 ```
+
+# controlDict
+**controlDict** 为jSON数据与BMPN模型对应关系的字典,属性如下:
+
+| 参数 | 说明 |
+| --- | --- |
+|attrs|普通参数|
+|enumerable|可枚举属性|
+|nonEnumerable|不可枚举属性|
+
+因为bpmn模型对不同属性设置了不同的组装类型，在json中统一为某字段属性, s所以在转换数据时需要对不同类型属性做单独处理，故此需要配置**controlDict**
+
 ## License
 仅供学习交流使用.
 同样也遵循 [bpmn.io license](http://bpmn.io/license).
